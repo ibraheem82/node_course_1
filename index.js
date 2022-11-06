@@ -2,10 +2,12 @@
 * @Reading files in node
 *
 */
-
 const fs = require('fs');
 const http = require('http');
+const url = require('url');
+
 const PORT = 8000; 
+
 
 // ####################### Working with files ############################
 // will read the data from the file.
@@ -64,9 +66,14 @@ const dataObj = JSON.parse(data);
 
 
 const server = http.createServer((req, res) => {
-    const pathName = req.url;
+    console.log(req.url);
+    // [true] -> query string.
+    // console.log(url.parse(req.url, true));
+
+    const { query, pathname } = url.parse(req.url, true);
+    // const pathName = req.url;
     // * Overview page
-    if (pathName === '/' || pathName === '/overview') {
+    if (pathname === '/' || pathname === '/overview') {
         res.writeHead(200, { 'Content-type': 'text/html' });
                         //  el taking in the current object on each iteration.
         // * [el] now holds the data.
@@ -80,11 +87,11 @@ const server = http.createServer((req, res) => {
         // res.end(tempOverview);
 
     // * Product page
-    } else if(pathName === '/product') {
+    } else if(pathname === '/product') {
         res.end('<h1>See The Product</h1>')
 
     // * API
-    } else if (pathName == '/api') {
+    } else if (pathname == '/api') {
 
         res.writeHead(200, { 'Content-type': 'application/json' });
         res.end(data)

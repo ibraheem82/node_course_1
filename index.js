@@ -6,9 +6,10 @@ const fs = require('fs');
 const http = require('http');
 const url = require('url');
 
-const replaceTemplates = require('./modules/replaceTemplate');
 
 const PORT = 8000; 
+const replaceTemplate = require('./modules/replaceTemplate');
+
 
 
 // ####################### Working with files ############################
@@ -68,7 +69,7 @@ const server = http.createServer((req, res) => {
         // * [el] now holds the data.
         // * dataObj is holding all of the products.
         // * in each iteration we will replace the placeholders in the tempCard with the el current iteration.
-        const cardsHtml = dataObj.map(el => replaceTemplates(tempCard, el)).join('')
+        const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('')
         // console.log(cardsHtml);
         const output = tempOverview.replace('{%PRODUCT_CARD%}', cardsHtml);
 
@@ -80,7 +81,7 @@ const server = http.createServer((req, res) => {
         // console.log(query);
         res.writeHead(200, { 'Content-type': 'text/html' });
         const product = dataObj[query.id];
-        const output = replaceTemplates(tempProduct, product)
+        const output = replaceTemplate(tempProduct, product)
         // res.end('<h1>See The Product</h1>')
         res.end(output)
 

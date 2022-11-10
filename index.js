@@ -80,7 +80,10 @@ const server = http.createServer((req, res) => {
     } else if (pathname === '/product') {
         // console.log(query);
         res.writeHead(200, { 'Content-type': 'text/html' });
+        // * [dataObj] is an array, [query.id] -> we are retriving the elements at the  position that is coming from our {query.id}
+        // * will get a particular data for the particular id that owns it.
         const product = dataObj[query.id];
+        // * replace all the placeholders with whatsoever that is coming from the json. 
         const output = replaceTemplate(tempProduct, product)
         // res.end('<h1>See The Product</h1>')
         res.end(output)

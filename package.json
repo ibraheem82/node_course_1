@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ibraheem82/node_course_1/issues"
   },
-  "homepage": "https://github.com/ibraheem82/node_course_1#readme"
+  "homepage": "https://github.com/ibraheem82/node_course_1#readme",
+  "dependencies": {
+    "slugify": "^1.6.5"
+  }
 }

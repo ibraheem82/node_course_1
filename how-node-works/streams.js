@@ -24,7 +24,7 @@ server.on('request', (req, res) => {
         // * the [res] is also a stream
     //     res.end()
     // })
-
+ 
     // * another event we can listen to
     // ! in the callback function we have access to the callback function.
     // readable.on('error', err => {

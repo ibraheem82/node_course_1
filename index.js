@@ -12,37 +12,7 @@ const replaceTemplate = require('./modules/replaceTemplate');
 
 
 // ####################### Working with files ############################
-// will read the data from the file.
-// const readText = fs.readFileSync('./txt/input.txt', 'utf-8');
 
-// const textOut = `This is what we know about ibraheem: ${readText}.\n Created on ${Date.now()}`;
-// fs.writeFileSync('./txt/output.txt', textOut);
-// console.log(readText);
-// console.log('File was written!');
-
-
-// !  Callback Hell !
-// Non Blocking way of writing in (node js) / Asynchronously.
-// * Nodejs is reading the file in background.
-// when has already been read, it will log the result.
-// fs.readFile('./txt/start.txt', 'utf-8', (err, data1) => {
-    // the result of the first one is depending on the result or the output of the second  second one
-    // * using the data of the file name.
-    // fs.readFile(`./txt/${data1}.txt`, 'utf-8', (err, data2) => {
-    //      console.log(data2);
-    //     fs.readFile(`./txt/add.txt`, 'utf-8', (err, data3) => {
-    //         console.log(data3);
-            // if the file is not avaliable it will be created.
-//             fs.writeFile('./txt/write.txt', `${data2}\n${data3}`, 'utf-8', err => {
-//                 console.log('the file has been written.');
-//             });
-
-//         });
-//     });
-// });
-// console.log('Will read file.');
-
-// ####################### Working with Server ############################
 
 
 const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
@@ -57,7 +27,7 @@ const dataObj = JSON.parse(data);
 const slug = dataObj.map(el => slugify(el.productName, { lower: true }))
 console.log(slug);
 
-
+// ####################### Working with Server ############################
 // console.log(slugify('omikunle build', {lower: true}));
 const server = http.createServer((req, res) => {
     // console.log(req.url);
